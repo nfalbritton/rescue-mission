@@ -1,0 +1,19 @@
+<h1>Question Detail:</h1>
+
+<h3><%= @question.id %>. <%= @question.title %></h3>
+
+<p>Description:<%= @question.description %></p>
+
+
+
+  <h3>Answer This Question:</h3>
+
+  <% if current_user  %>
+    <%= form_for [@question, @answer] do |f| %>
+      <%=  f.label :description, 'Answer'%>
+      <%= f.text_field :description %>
+
+      <%= f.submit %>
+    <% end %>
+
+  <%= link_to 'Back to questions', questions_path %>
