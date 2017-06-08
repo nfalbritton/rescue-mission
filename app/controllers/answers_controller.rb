@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @question = Question.find(params[:question_id])
@@ -9,7 +10,7 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer = Answer.new(answer_params)
     @answer.question = @answer
-    @answer.user = current_user 
+    @answer.user = current_user
 
     if @answer.save
       flash[:notice] = "Answer saved successfully"
